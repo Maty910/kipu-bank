@@ -1,0 +1,372 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_bankCap",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_withdrawLimit",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "attempted",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "cap",
+						"type": "uint256"
+					}
+				],
+				"name": "ExceedsBankCap",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "attempted",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "limit",
+						"type": "uint256"
+					}
+				],
+				"name": "ExceedsWithdrawLimit",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "available",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "requested",
+						"type": "uint256"
+					}
+				],
+				"name": "InsufficientBalance",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "ReentrancyAttack",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "TransferFailed",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "ZeroDeposit",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Deposit",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Withdrawal",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "bankBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "bankCap",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "deposit",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdrawLimit",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Matías Chacón",
+			"details": "Se implemnetan buenas prácticas de seguridad y manejo de errores personalizados",
+			"errors": {
+				"ExceedsBankCap(uint256,uint256)": [
+					{
+						"params": {
+							"attempted": "Balance que se intentó alcanzar",
+							"cap": "Límite máximo del banco"
+						}
+					}
+				],
+				"ExceedsWithdrawLimit(uint256,uint256)": [
+					{
+						"params": {
+							"attempted": "Cantidad solicitada para retirar",
+							"limit": "Límite máximo por transacción"
+						}
+					}
+				],
+				"InsufficientBalance(uint256,uint256)": [
+					{
+						"params": {
+							"available": "Saldo disponible del usuario",
+							"requested": "Cantidad solicitada para retirar"
+						}
+					}
+				],
+				"ReentrancyAttack()": [
+					{
+						"details": "Usamos un bloqueo simple para prevenir ataques de reentrancy"
+					}
+				],
+				"TransferFailed(address,uint256)": [
+					{
+						"params": {
+							"amount": "Cantidad que se intentó enviar",
+							"to": "Dirección a la que se intentó enviar ETH"
+						}
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {
+				"constructor": {
+					"params": {
+						"_bankCap": "Límite global de depósitos",
+						"_withdrawLimit": "Límite máximo por retiro"
+					}
+				},
+				"deposit()": {
+					"details": "Usa el modificador underBankCap para validar el límite global y noReentrancy"
+				},
+				"getBalance(address)": {
+					"params": {
+						"user": "Dirección del usuario para consultar el saldo"
+					}
+				},
+				"withdraw(uint256)": {
+					"details": "Sigue checks-effects-interactions y usa noReentrancy"
+				}
+			},
+			"title": "KipuBank - Un smart contract seguro para depósitos y retiros de ETH",
+			"version": 1
+		},
+		"userdoc": {
+			"errors": {
+				"ExceedsBankCap(uint256,uint256)": [
+					{
+						"notice": "Se lanza cuando el nuevo balance del contrato excede bankCap"
+					}
+				],
+				"ExceedsWithdrawLimit(uint256,uint256)": [
+					{
+						"notice": "Se lanza cuando el retiro excede withdrawLimit"
+					}
+				],
+				"InsufficientBalance(uint256,uint256)": [
+					{
+						"notice": "Se lanza cuando el usuario intenta retirar más ETH que lo que tiene disponible "
+					}
+				],
+				"ReentrancyAttack()": [
+					{
+						"notice": "Se lanza si se detecta reentrancy"
+					}
+				],
+				"TransferFailed(address,uint256)": [
+					{
+						"notice": "Se lanza si la transferencia nativa falla"
+					}
+				],
+				"ZeroDeposit()": [
+					{
+						"notice": "Se lanza si el depósito es 0"
+					}
+				]
+			},
+			"events": {
+				"Deposit(address,uint256)": {
+					"notice": "Evento emitido cuando un usario realiza un depósito"
+				},
+				"Withdrawal(address,uint256)": {
+					"notice": "Evento emitido cuando un usuario realiza un retiro"
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"bankBalance()": {
+					"notice": "Devuelve el balance total retenido por el contrato"
+				},
+				"bankCap()": {
+					"notice": "Límite global de depósitos del banco"
+				},
+				"constructor": {
+					"notice": "Constructor para inicializar los límites del banco"
+				},
+				"getBalance(address)": {
+					"notice": "Devuelve el saldo almacenado para `user`"
+				},
+				"withdraw(uint256)": {
+					"notice": "Retira `amount` ETH de la bóveda del remitente"
+				},
+				"withdrawLimit()": {
+					"notice": "Límite máximo por retiro"
+				}
+			},
+			"notice": "Este contrato permite a los usuarios depositar y retirar ETG con límites definidos",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/KipuBank.sol": "KipuBank"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/KipuBank.sol": {
+			"keccak256": "0x3e9ad0d4e081114f2ef865695cfb2f1a492e59b1a7a2a546a9915587f465b153",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://87fe61078dd568361a68b08db22e1b59c3bdfe5e8a5f538af5cf125010fbadcd",
+				"dweb:/ipfs/QmWP4udFmNowXaLTrg8ZgQjR8uAq61KtznMD4JGr4TwScs"
+			]
+		}
+	},
+	"version": 1
+}
