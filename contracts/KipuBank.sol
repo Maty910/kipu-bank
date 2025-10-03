@@ -3,7 +3,7 @@ pragma solidity 0.8.30;
 
 /// @title KipuBank - Un smart contract seguro para depósitos y retiros de ETH
 /// @author Matías Chacón
-/// @notice Este contrato permite a los usuarios depositar y retirar ETG con límites definidos
+/// @notice Este contrato permite a los usuarios depositar y retirar ETH con límites definidos
 /// @dev Se implemnetan buenas prácticas de seguridad y manejo de errores personalizados
 
 contract KipuBank {
