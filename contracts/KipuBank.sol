@@ -121,7 +121,7 @@ contract KipuBank {
     /// @dev Usa el modificador underBankCap para validar el límite global y noReentrancy
     function deposit() external payable underBankCap(msg.value) noReentrancy {
         if(msg.value == 0) {
-            revert ZeroDeposit(); // podemos cambiarlo luego por un error personalizado
+            revert ZeroDeposit();
         }
 
         _addToVault(msg.sender, msg.value); // Función interna para manejar el depósito

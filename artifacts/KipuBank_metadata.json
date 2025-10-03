@@ -339,7 +339,7 @@
 					"notice": "Límite máximo por retiro"
 				}
 			},
-			"notice": "Este contrato permite a los usuarios depositar y retirar ETG con límites definidos",
+			"notice": "Este contrato permite a los usuarios depositar y retirar ETH con límites definidos",
 			"version": 1
 		}
 	},
@@ -360,11 +360,11 @@
 	},
 	"sources": {
 		"contracts/KipuBank.sol": {
-			"keccak256": "0x3e9ad0d4e081114f2ef865695cfb2f1a492e59b1a7a2a546a9915587f465b153",
+			"keccak256": "0xf17218fae5256703f1f526173a202afe80e30ef31047f307d96f1f7642423389",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://87fe61078dd568361a68b08db22e1b59c3bdfe5e8a5f538af5cf125010fbadcd",
-				"dweb:/ipfs/QmWP4udFmNowXaLTrg8ZgQjR8uAq61KtznMD4JGr4TwScs"
+				"bzz-raw://14445ea70dce1a159974f0d878c0f1e8c330d2f2f4e2483bd122bbc01192c556",
+				"dweb:/ipfs/QmUmsAir8cqvxs1T3XFz51f63jBtcRUvP2CrzbugkW3DZE"
 			]
 		}
 	},
