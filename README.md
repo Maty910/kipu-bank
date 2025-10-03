@@ -60,7 +60,7 @@ KipuBank es un contrato inteligente seguro desarrollado en Solidity que permite 
 ### Prerrequisitos
 - Navegador web con MetaMask instalado
 - Conexión a la red Sepolia
-- ETH de Sepolia en tu cartera
+- ETH de Sepolia en tu wallet
 
 ### Pasos para Despliegue
 1. Ve a [Remix IDE](https://remix.ethereum.org)
@@ -113,6 +113,6 @@ KipuBank es un contrato inteligente seguro desarrollado en Solidity que permite 
 ## Tecnologías Utilizadas
 - **Solidity**: 0.8.30
 - **Remix IDE**: Para desarrollo y despliegue
-- **MetaMask**: Para gestión de cartera
+- **MetaMask**: Para gestión de wallet
 - **Ethereum Testnet**: Sepolia
 - **Etherscan**: Para verificación y exploración
