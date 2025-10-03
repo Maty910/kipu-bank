@@ -67,7 +67,8 @@ KipuBank es un contrato inteligente seguro desarrollado en Solidity que permite 
 2. Crea un nuevo archivo llamado `KipuBank.sol` y pega el código del contrato
 3. Compila el contrato en la pestaña "Solidity Compiler"
 4. En la pestaña "Deploy & Run Transactions":
-   - Selecciona el entorno "Injected Provider - MetaMask" (conectado a Sepolia)
+   - Selecciona el entorno "Browser Wallet" (conectado a Sepolia)
+   - Selecciona "Sepolia Testnet - MetaMask" en el buscador
    - Ingresa los parámetros del constructor: `_bankCap` y `_withdrawLimit` (en wei)
    - Haz clic en "Transact" y confirma la transacción en MetaMask
 
@@ -92,15 +93,8 @@ KipuBank es un contrato inteligente seguro desarrollado en Solidity que permite 
 - `bankCap()` y `withdrawLimit()`: Haz clic en "call" para ver los límites
 
 ## Verificación del Código en Etherscan
-1. Ve a [Sepolia Etherscan](https://sepolia.etherscan.io)
-2. Busca la dirección de tu contrato: `0x5138c9cb760d71d9a19ad7b731c64213a51084c1`
-3. Haz clic en "Verify and Publish"
-4. Completa la información:
-   - Compiler Type: Solidity (Single file)
-   - Compiler Version: 0.8.30
-   - License: MIT
-   - Ingresa el código fuente y los parámetros del constructor
-5. Haz clic en "Verify and Publish"
+Link: https://sepolia.etherscan.io/address/0x5138c9cb760d71d9a19ad7b371c64213a51084c1#code
+Contract Address: 0x5138c9cb760D71D9a19aD7b371c64213A51084C1 
 
 ## Prácticas de Seguridad Implementadas
 - ✅ **Checks-Effects-Interactions** - Seguido estrictamente en todas las funciones
@@ -115,4 +109,4 @@ KipuBank es un contrato inteligente seguro desarrollado en Solidity que permite 
 - **Remix IDE**: Para desarrollo y despliegue
 - **MetaMask**: Para gestión de wallet
 - **Ethereum Testnet**: Sepolia
-- **Etherscan**: Para verificación y exploración
+- **Etherscan**: Para verificación
