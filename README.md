@@ -93,8 +93,8 @@ KipuBank es un contrato inteligente seguro desarrollado en Solidity que permite 
 - `bankCap()` y `withdrawLimit()`: Haz clic en "call" para ver los límites
 
 ## Verificación del Código en Etherscan
-Link: https://sepolia.etherscan.io/address/0x5138c9cb760d71d9a19ad7b371c64213a51084c1#code
-Contract Address: 0x5138c9cb760D71D9a19aD7b371c64213A51084C1 
+- Link: https://sepolia.etherscan.io/address/0x5138c9cb760d71d9a19ad7b371c64213a51084c1#code
+- Contract Address: `0x5138c9cb760D71D9a19aD7b371c64213A51084C1`
 
 ## Prácticas de Seguridad Implementadas
 - ✅ **Checks-Effects-Interactions** - Seguido estrictamente en todas las funciones
