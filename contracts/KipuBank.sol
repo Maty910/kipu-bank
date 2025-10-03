@@ -117,7 +117,7 @@ contract KipuBank {
     // FUNCIONES PÚBLICAS / EXTERNAS
     // -----------------
 
-    // @notice Deposita ETH en la bóveda del remitente
+    /// @notice Deposita ETH en la bóveda del remitente
     /// @dev Usa el modificador underBankCap para validar el límite global y noReentrancy
     function deposit() external payable underBankCap(msg.value) noReentrancy {
         if(msg.value == 0) {
